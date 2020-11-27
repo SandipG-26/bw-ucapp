@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import React from 'react';
 import './App.css';
-import Service from './Service/service'
+import Services from '../Components/Services/services';
 
 const  App = props => {
   const [serviceState, setServiceState] = useState(
@@ -67,16 +67,10 @@ const  App = props => {
   if(serviceState.showServices){
     serviceLists=(<div className="row">
     {
-      serviceState.services.map((serviceItem, index) => 
-      {
-      return <Service 
-      service={serviceItem.service}
-      Name={serviceItem.Name} 
-      Vendor={serviceItem.Vendor}  
-      Area={serviceItem.Area}
-      onDelete={deleteServiceHandler.bind(this, index)} 
-      /> 
-      })
+      <Services 
+        services = {serviceState.services}
+        onDelete = {deleteServiceHandler}
+      />
     }
     </div>
     );

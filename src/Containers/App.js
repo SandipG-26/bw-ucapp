@@ -1,29 +1,33 @@
-import {useState} from 'react';
-import React from 'react';
+import { render } from '@testing-library/react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
-import Services from '../Components/Services/services';
 
-const  App = props => {
-  const [serviceState, setServiceState] = useState(
-    {
+
+const App = (props) =>  {
+ const [serviceState, setServiceState]= useState (  
+   {
       services: [ 
-        {service:"Door-Step" , Name:"Painting", Vendor:"Sandip", Area:"Pune"},
-        {service:"Door-Step" , Name:"Repairing", Vendor:"Rohan", Area:"Mumbai"},
-        {service:"Door-Step" , Name:"Insalling", Vendor:"Kiran", Area:"Delhi"},
-        {service:"Door-Step" , Name:"Cleaning", Vendor:"Akshay", Area:"Agra"},
-               
+        {Id: "1",service:"Door-Step" , Name:"Painting", Vendor:"Sandip", Area:"Pune"},
+        {Id: "2",service:"Door-Step" , Name:"Repairing", Vendor:"Rohan", Area:"Mumbai"},
+        {Id: "3",service:"Door-Step" , Name:"Insalling", Vendor:"Kiran", Area:"Delhi"},
+        {Id: "4",service:"Door-Step" , Name:"Cleaning", Vendor:"Akshay", Area:"Agra"},       
       ],
       Count: 4,
       showServices: true, 
       showServicesLabel: "Hide Services"
     }
   );
+
+
+  useEffect(()=>{
+    console.log("Component: App | Methods: Useeffect");
+  })
   
   
 
-  const addServiceHandler = () => {
+ const addServiceHandler = () => {
     const serviceLists = [ ...serviceState.services];
-    const newService = {service: "Door-Step", Name:"Degree", Vendor:"dinesh", Area:"BAngalore"}
+    const newService = {Id: "5",service: "Door-Step", Name:"Degree", Vendor:"dinesh", Area:"BAngalore"}
     serviceLists.push(newService);
 
     setServiceState({
@@ -63,20 +67,28 @@ const  App = props => {
 
     })
   }
-  let serviceLists= null;
-  if(serviceState.showServices){
+
+  render(){
+    let serviceLists= null;
+    if(serviceState.showServices)
+    {
     serviceLists=(<div className="row">
     {
-      <Services 
-        services = {serviceState.services}
-        onDelete = {deleteServiceHandler}
-      />
+      serviceState.services.map((serviceItem, index) => 
+      {
+      return <service 
+      service={serviceItem.service}
+      Name={serviceItem.Name} 
+      Vendor={serviceItem.Vendor}  
+      Area={serviceItem.Area}
+      onDelete={deleteServiceHandler.bind(this, index)} 
+      /> 
+      })
     }
     </div>
     );
-  } 
 
-  return (
+   return (
     
       <div className="App container-fluid">
         
@@ -91,7 +103,10 @@ const  App = props => {
         </div> 
        {serviceLists}
       </div>
-   
- )  
-}
+   )  
+  };
+ }
+};
+
+
 export default App;

@@ -1,31 +1,32 @@
-import { render } from '@testing-library/react';
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import './App.css';
+import Services from '../Components/Services/services';
 
-
-const App = (props) =>  {
- const [serviceState, setServiceState]= useState (  
-   {
+const  App = (props) => {
+  const [serviceState, setServiceState] = useState(
+    {
       services: [ 
-        {Id: "1",service:"Door-Step" , Name:"Painting", Vendor:"Sandip", Area:"Pune"},
+        {Id: "1", service:"Door-step" , Name:"Painting", Vendor:"Sandip", Area:"Pune"},
         {Id: "2",service:"Door-Step" , Name:"Repairing", Vendor:"Rohan", Area:"Mumbai"},
         {Id: "3",service:"Door-Step" , Name:"Insalling", Vendor:"Kiran", Area:"Delhi"},
-        {Id: "4",service:"Door-Step" , Name:"Cleaning", Vendor:"Akshay", Area:"Agra"},       
-      ],
+        {Id: "4",service:"Door-Step" , Name:"Cleaning", Vendor:"Akshay", Area:"Agra"},
+               
+      ],  
       Count: 4,
       showServices: true, 
       showServicesLabel: "Hide Services"
     }
   );
-
-
-  useEffect(()=>{
-    console.log("Component: App | Methods: Useeffect");
-  })
   
-  
+    useEffect(() => {
+      console.log("Component : App | Methods : Useeffect");
+      setTimeout(() => {
+        alert("API called completed");
+      }, 1000);
+    },[serviceState]);
 
- const addServiceHandler = () => {
+
+  const addServiceHandler = () => {
     const serviceLists = [ ...serviceState.services];
     const newService = {Id: "5",service: "Door-Step", Name:"Degree", Vendor:"dinesh", Area:"BAngalore"}
     serviceLists.push(newService);
@@ -68,45 +69,33 @@ const App = (props) =>  {
     })
   }
 
-  render(){
-    let serviceLists= null;
-    if(serviceState.showServices)
-    {
+  let serviceLists= null;
+  if(serviceState.showServices){
     serviceLists=(<div className="row">
     {
-      serviceState.services.map((serviceItem, index) => 
-      {
-      return <service 
-      service={serviceItem.service}
-      Name={serviceItem.Name} 
-      Vendor={serviceItem.Vendor}  
-      Area={serviceItem.Area}
-      onDelete={deleteServiceHandler.bind(this, index)} 
-      /> 
-      })
+      <Services 
+        services = {serviceState.services}
+        onDelete = {() => deleteServiceHandler}
+      />
     }
     </div>
     );
-
-   return (
-    
-      <div className="App container-fluid">
-        
-        <div className="row">
-            <div className = "col-lg-6">
+  }
+  return (
+    <div className="App container-fluid">
+      <div className="row">
+          <div className = "col-lg-6">
               <h1>Lists Of Vehicles l Total Vehicles:{serviceState.Count}</h1>
-            </div>
-            <div className="buttonDiv col-lg-6">
+          </div>
+          <div className="buttonDiv col-lg-6">
               <button className="btn btn-primary btn-md buttonUpdate" onClick={addServiceHandler}>Add Service</button>
               <button className="btn btn-secondary btn-md" onClick={toggleServicesHandler}>{serviceState.showServicesLabel}</button>
-            </div>
+          </div>
         </div> 
        {serviceLists}
       </div>
-   )  
-  };
- }
-};
+   );
+  }
 
 
 export default App;

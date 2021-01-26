@@ -1,11 +1,12 @@
 .type{
-    margin : 10px;
+    margin : 5px;
     display : inline-block;
     border : 1px solid blue;
     box-shadow : 0 2px 2px blue;
-    padding : 5px 10px 5px 15px;
-    background-color : pink;
+    padding : 5px 5px 5px 5px;
+    background-color : rgb(13, 240, 228);
     text-align: left;
-    color: darkred;
-    max-width: 23%
+    color: rgb(197, 33, 33);
+    max-width: 100%;
+
 };

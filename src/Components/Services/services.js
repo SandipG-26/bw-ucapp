@@ -2,14 +2,15 @@ import Service from './Service/service';
 
 const services = (props) => {
     return(
-        props.services.map((serviceItem, index) => {
+        props.services.map((serviceItem) => {
           return <Service 
-                key={serviceItem.Id}
-                service={serviceItem.service}
-                Name={serviceItem.Name} 
-                Vendor={serviceItem.Vendor}  
-                Area={serviceItem.Area}
-                onDelete={props.onDelete(index)} 
+                key={serviceItem.id}
+                serviceType={serviceItem.serviceType} 
+                servicePolicy={serviceItem.servicePolicy}
+                serviceSubType={serviceItem.serviceSubType}  
+                warranty={serviceItem.warranty}
+                onDelete={()=> props.onDelete(serviceItem.id)} 
+                onEdit={() => props.onEdit(serviceItem)}
           /> 
         })
     );

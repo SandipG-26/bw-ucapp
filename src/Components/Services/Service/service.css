@@ -1,12 +1,13 @@
 .type{
     margin : 5px;
     display : inline-block;
-    border : 1px solid blue;
+    border : 1px solid green;
     box-shadow : 0 2px 2px blue;
-    padding : 5px 5px 5px 5px;
-    background-color : rgb(13, 240, 228);
+    padding : 5px 5px 5px 20px;
+    background-color : rgba(96, 207, 183, 0.856);
     text-align: left;
-    color: rgb(197, 33, 33);
-    max-width: 100%;
+    color: rgb(12, 11, 11);
+    max-width: 20%;
+    max-height: auto;
 
 };

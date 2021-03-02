@@ -1,8 +1,11 @@
 .App {
   text-align: center;
-  background-color: darkseagreen;
-  background: url("D:\full Stack dev\ppt\bw-ucapp\src\Components\Services\Service\bmw.jpg");
-}
+  /* background-color: rgb(159, 207, 159); */
+  background-image: url(../Components/Services/Image/geeta1.jpg) ;
+  background-position: center;
+  background-repeat:no-repeat;
+  background-size: cover;
+ }
 
 .App-logo {
   height: 40vmin;
@@ -42,7 +45,8 @@
   text-align: right;
 }
 .buttonUpdate{
-  margin: 10px 20px 10px 10px;
+  margin: 10px 10px 10px 2px;
   width: 100px;
 }
+
  

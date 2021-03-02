@@ -1,19 +1,23 @@
 import Service from './Service/service';
 
-const services = (props) => {
+
+const Services = (props) => {
     return(
-        props.services.map((serviceItem) => {
-          return <Service 
-                key={serviceItem.id}
-                serviceType={serviceItem.serviceType} 
-                servicePolicy={serviceItem.servicePolicy}
-                serviceSubType={serviceItem.serviceSubType}  
-                warranty={serviceItem.warranty}
-                onDelete={()=> props.onDelete(serviceItem.id)} 
-                onEdit={() => props.onEdit(serviceItem)}
-          /> 
+        props.Services.map((serviceItem) => {
+          return(<div>
+          <Service 
+                Key={serviceItem.id}
+                ServiceType={serviceItem.serviceType} 
+                ServicePolicy={serviceItem.servicePolicy}
+                ServiceSubType={serviceItem.serviceSubType}  
+                Warranty={serviceItem.warranty}
+                onDelete={props.onDelete(serviceItem.id)} 
+                onEdit={props.onEdit(serviceItem)}
+          />
+         </div>
+          )
         })
     );
 };
 
-export default services; 
+export default Services; 
